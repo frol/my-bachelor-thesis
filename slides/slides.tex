@@ -1,5 +1,16 @@
 \documentclass[12pt]{beamer}
 
+\defbeamertemplate*{title page}{customized}[1][]
+{
+  \usebeamerfont{institute}\insertinstitute\par
+  \usebeamerfont{title}\inserttitle\par
+  \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+  \bigskip
+  \usebeamerfont{author}\insertauthor\par
+  \usebeamerfont{date}\insertdate\par
+  \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T2A]{fontenc}
 \usepackage[english,russian]{babel}
@@ -18,6 +29,7 @@
 
 \title{Анализ безопасности протокола WEP в компьютерных сетях стандарта 802.11 WLAN}
 \author{Фролов В.В.}
+\institute{Министерство образования и науки, молодёжи и спорта Украины}
 \date{}
 
 % Создание заглавной страницы
@@ -27,96 +39,114 @@
 
 \begin{frame}{Задачи}
 
-\begin{itemize}
-    \item изучить протокол WEP, процесс обмена пакетами и обеспечение аутентификации и конфиденциальности в сетях стандарта 802.11 WLAN
-    \item исследовать возможные атаки и реализовать атаку с фрагментацией на WEP
-    \item провести анализ безопасности WEP
-    \item рассмотреть условия работы труда на рабочем месте и расчитать КЕО для города Харькова
-\end{itemize}
+    \begin{itemize}
+        \item изучить протокол WEP, процесс обмена пакетами и обеспечение аутентификации и конфиденциальности в сетях стандарта 802.11 WLAN
+        \item исследовать возможные атаки и реализовать атаку с фрагментацией на WEP
+        \item провести анализ безопасности WEP
+        \item рассмотреть условия работы труда на рабочем месте и расчитать КЕО для города Харькова
+    \end{itemize}
 
 \end{frame} 
 
 
 \begin{frame}{Передача пакетов в сетях стандарта 802.11 WLAN}
 
-\begin{figure}
-    \includegraphics[width=9cm]{graphics/wlan_diagram.eps}
-\end{figure}
+    \begin{figure}
+        \includegraphics[width=9cm]{graphics/wlan_diagram.eps}
+    \end{figure}
+
+\end{frame} 
+
+
+\begin{frame}{Нарушитель в сетях стандарта 802.11 WLAN\newline}
+
+    \begin{figure}
+        \includegraphics[width=9cm]{graphics/wlan_diagram_with_attacker.eps}
+    \end{figure}
 
 \end{frame} 
 
 
 \begin{frame}{Классификация атак на протокол WEP}
 
-\begin{figure}
-    \includegraphics[width=10cm]{graphics/wep_attacks_classification.eps}
-\end{figure}
-
-%\begin{itemize}
-%    \item
-%\end{itemize}
+    \begin{figure}
+        \includegraphics[width=10cm]{graphics/wep_attacks_classification.eps}
+    \end{figure}
 
 \end{frame} 
 
 
 \begin{frame}{Алгоритм атаки с фрагментацией}
 
-\begin{figure}
-    \includegraphics[width=7cm]{graphics/fragment_program_algo.eps}
-\end{figure}
+    \begin{figure}
+        \includegraphics[width=7cm]{graphics/fragment_program_algo.eps}
+    \end{figure}
 
 \end{frame} 
 
 
 \begin{frame}{Атака с фрагментацией}
 
-\begin{figure}
-    \includegraphics[width=10cm]{graphics/restore_part_of_gamma.eps}
-\end{figure}
+    \begin{itemize}
 
-\begin{figure}
-    \includegraphics[width=10cm]{graphics/default_llc_header.eps}
-\end{figure}
+        \item Вычисление гаммы шифрующей
+            \begin{figure}
+                \includegraphics[width=10cm]{graphics/restore_part_of_gamma.eps}
+            \end{figure}
+
+        \item Стандартный заголовок LLC
+            \begin{figure}
+                \includegraphics[width=10cm]{graphics/default_llc_header.eps}
+            \end{figure}
+    \end{itemize}
 
 \end{frame} 
 
 
-\begin{frame}{}
+\begin{frame}{Анализ безопасности протокола WEP}
 
-\begin{itemize}
-    \item
-\end{itemize}
+    \begin{itemize}
+
+        \item PTW атака (атака с восстановлением ключа) позволяет вычислить ключ
+        в течение нескольких минут
+
+        \item Атака с фрагментацией (атака без восстановления ключа) позволяет
+        вычислить гамму шифрования, что позволяет создавать легитимные пакеты,
+        принимаемые точкой доступа
+
+    \end{itemize}
 
 \end{frame} 
 
 
 \begin{frame}{Охрана труда}
 
-\begin{itemize}
-    \item Коеффициент ествественного освещения равен 1.8\%
-\end{itemize}
+    \begin{itemize}
+        \item Меры по охране труда в НИЛ с углублённой обработкой вопроса расчёта КЕО для города Харькова.
+        \item Коэффициент естественного освещения равен 1.8\%.
+    \end{itemize}
 
 \end{frame} 
 
 
 \begin{frame}{Выводы}
 
-\begin{itemize}
-    \item Исследован процесс обмена пакетами и обеспечение безопасности в сетях стандарта 802.11 WLAN
-    \item Рассмотрены возможные атаки на протокол WEP
-    \item Реализована атака с фрагментацией
-    \item Проведён анализ безопасности WEP
-    \item Расчитан коеффициент естественного освещения для города Харькова
-\end{itemize}
+    \begin{itemize}
+        \item Исследован процесс обмена пакетами и обеспечение безопасности в сетях стандарта 802.11 WLAN
+        \item Рассмотрены возможные атаки на протокол WEP
+        \item Реализована атака с фрагментацией
+        \item Проведен анализ безопасности WEP
+        \item Расчитан коэффициент естественного освещения для города Харькова
+    \end{itemize}
 
 \end{frame} 
 
 
 \begin{frame}{}
 
-\begin{center}
-    Спасибо за внимание.
-\end{center}
+    \begin{center}
+        Спасибо за внимание.
+    \end{center}
 
 \end{frame}
 
