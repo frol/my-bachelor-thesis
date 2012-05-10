@@ -1,0 +1,12 @@
+.*
+*.aux
+*.dvi
+*.ilg
+*.log
+*.nlo
+*.nls
+*.ps
+*.toc
+*.nav
+*.out
+*.snm

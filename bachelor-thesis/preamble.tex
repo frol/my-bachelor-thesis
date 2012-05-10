@@ -1,0 +1,145 @@
+% Copyright 2012 Frol (c) <frolvlad@gmail.com>
+%
+% based on:
+% Copyright 2011 Zoresvit (c) <zoresvit@gmail.com>
+% 
+% Latex preambule for regular reports and scientific documents. 
+% The format is close to one described in DSTU-3008-95 but does not completely
+% satisfy all its requirements.
+% Listings package enabled and set up for source code pasting.
+%/
+
+\documentclass[a4paper,14pt]{styles/dstu3008_95}
+%\documentclass[utf8,usehyperref,12pt]{G7-32}
+\usepackage[utf8]{inputenc} %% ваша любимая кодировка здесь
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+%\usepackage{float}
+%\usepackage[dvips]{graphicx}
+%\graphicspath{{graphics/}}
+%\usepackage{listingsutf8} 	% insert source code listings
+
+%\makeatletter
+%\renewcommand{\@makechapterhead}[1]{%
+%\vspace*{50 pt}%
+%{\setlength{\parindent}{0pt} \raggedright \normalfont
+%\bfseries\Huge\thechapter.\ #1
+%\par\nobreak\vspace{40 pt}}}
+%\makeatother
+
+\usepackage[russian]{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{Список сокращений, условных обозначений, символов, единиц и терминов}
+\newcommand{\abbr}[2]{\nomenclature{#1}{ --- #2}}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+
+\usepackage{enumerate}      % for changing enumeration appearance
+\usepackage{graphicx}		% including pictures and graphics to the document
+%\usepackage[pdftex]{graphicx}
+\usepackage{indentfirst}	% for indenting first paragraph line
+\usepackage{wrapfig}		% for text wrapping around pictures
+\usepackage{pscyr}			% Cyrillic fonts
+\usepackage{gensymb}		% degree and Celsius sign using
+\usepackage{cite}			% citation from bibliography
+\usepackage[justification=centering]{caption}		% caption customizations
+\usepackage{setspace}		% set line spacing
+\usepackage{fancyhdr}		% for customizing section headings format
+%\usepackage{tocloft}		% customize table of contents settings
+\usepackage{geometry}		% page customizations
+%\usepackage{sectsty}		% customize sections heading style
+\usepackage{listingsutf8} 	% insert source code listings
+\usepackage{appendix}       % enable appendices at the end of document
+\usepackage{rotating}		% for sideways figures and tables
+\usepackage{longtable}		% for wrapping tables over multiple pages
+\usepackage{array}          % multiple row in math formulas
+\usepackage[usenames,dvipsnames]{color}  % custom color defining
+\usepackage{multirow}       % merge multirow in tables
+\usepackage[none]{hyphenat} % disable word breaking
+\sloppy                     % deny words cross right margin
+
+% ===[ Page settings ]===
+
+\geometry{left = 2.5cm, right = 2cm, top = 2cm, bottom = 2cm}
+
+% ===[ Text format settings ]===
+
+%\onehalfspacing  % set 1.5 line spacing interval
+%\setlength{\parindent}{1.25cm}  % set paragraph first line indentation
+\renewcommand{\thefootnote}{\arabic{footnote})}  % Add brackets to footnote numberings
+
+%\addto\captionsukrainian{\def\contentsname{\centerline{ЗМІСТ}}}
+%\addto\captionsukrainian{\def\refname{\centerline{ПЕРЕЛІК ПОСИЛАНЬ}}}
+
+%\renewcommand{\appendixpagename}{\begin{center} Додатки \end{center}}
+%\renewcommand{\appendixtocname}{Додатки}
+
+% ===[ customizing section headings ]===
+
+%\sectionfont{\centering \large}
+%\subsectionfont{\normalsize}
+
+% ===[ Caption Settings ]===
+
+\DeclareCaptionLabelSeparator{hyphen}{ -- }
+\captionsetup[figure]{format=hang, labelsep=hyphen, figurename=Рисунок}
+%\captionsetup[table]{format=hang, labelsep=hyphen, singlelinecheck=off, tablename=Таблица}
+
+% ===[ Bibliography Settings ]===
+
+\bibliographystyle{unsrt}
+
+% ===[ Switch enumerations to digit.digit format ]===
+
+\renewcommand{\theenumi}{\arabic{enumi})}
+\renewcommand{\labelenumi}{\arabic{enumi})}
+\renewcommand{\theenumii}{\arabic{enumii})}
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\theenumiii}{\arabic{enumiii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+
+% ===[ Listings package settings ]===
+\DeclareCaptionFont{white}{\color{black}}
+\DeclareCaptionFormat{listing}{\colorbox[rgb]{0.85, 0.85, 0.99}{\parbox{\textwidth}{\hspace{10pt}#1#2#3}}}
+\def\lstlistingname{Листинг}
+\renewcommand*\arraystretch{1.5} % table vertical padding
+
+\captionsetup[lstlisting] {
+format=listing,
+labelfont=white,
+textfont=white,
+singlelinecheck=true,
+margin=0pt,
+font={bf,footnotesize}
+}
+
+\lstset {
+extendedchars=false,
+inputencoding=utf8, 
+keepspaces=true, 
+language=bash, 
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+keywordstyle=\textbf,
+xleftmargin=13pt,
+framexleftmargin=10pt,
+framexrightmargin=3pt,
+framexbottommargin=4pt,
+frame=single,	          % adds a frame around the code
+captionpos=t, 			  % place position at top
+belowcaptionskip=7pt,
+tabsize=4,	              % sets default tabsize to 4 spaces
+showspaces=false,         % show spaces adding particular underscores
+showstringspaces=false,   % underline spaces within strings
+showtabs=false,           % show tabs within strings adding particular underscores
+breaklines=true,          % sets automatic line breaking
+numbers=left,             % where to put the line-numbers
+numberstyle=\scriptsize,  % the size of the fonts that are used for the line-numbers
+stepnumber=1,  % the step between two line-numbers. If it's 1 each line will be numbered
+numbersep=15pt            % how far the line-numbers are from the code
+}
+
+% ===[ extra aliases ]===
+\newcommand*\xor{\oplus}
