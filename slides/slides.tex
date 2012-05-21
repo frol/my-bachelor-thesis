@@ -1,12 +1,25 @@
 \documentclass[12pt]{beamer}
 
+\newcommand{\insertministry}[0]{\ministry}
+\newcommand{\insertchief}[0]{\chief}
+\newcommand{\insertdone}[0]{\done}
+\newcommand{\insertwhochiefed}[0]{\whochiefed}
+
 \defbeamertemplate*{title page}{customized}[1][]
 {
-  \usebeamerfont{institute}\insertinstitute\par
+  \usebeamerfont{ministry}\insertministry\par
+  \bigskip
+  \bigskip
   \usebeamerfont{title}\inserttitle\par
   \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
   \bigskip
-  \usebeamerfont{author}\insertauthor\par
+  \begin{table}
+    \begin{tabular}{ p{6cm} r }
+      \usebeamerfont{author}\insertdone   & \usebeamerfont{author}\insertwhochiefed \\
+      \usebeamerfont{author}\insertauthor & \usebeamerfont{author}\insertchief \\
+    \end{tabular}
+  \end{table}
+  \par
   \usebeamerfont{date}\insertdate\par
   \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
 }
@@ -22,14 +35,18 @@
 %\usefonttheme[]{serif}
 \usefonttheme{professionalfonts}
 
-%\setbeamerfont{structure}{family=\rmfamily}
+\setbeamerfont{ministry}{size=\large}
 \usecolortheme{lily}
+\beamertemplatenavigationsymbolsempty %remove navigation symbols
 
 \begin{document}
 
-\title{Анализ безопасности протокола WEP в компьютерных сетях стандарта 802.11 WLAN}
-\author{Фролов В.В.}
-\institute{Министерство образования и науки, молодёжи и спорта Украины}
+\def\ministry{Министерство образования и науки, молодёжи и спорта Украины}
+\title{Анализ безопасности протокола WEP в компьютерных сетях стандарта 802.11~WLAN}
+\def\done{Выполнил}
+\author{ст.гр. БИКС-08-2\newlineФролов В.В.}
+\def\whochiefed{Руководитель}
+\def\chief{ст.преп. Олешко О.И.}
 \date{}
 
 % Создание заглавной страницы
@@ -40,16 +57,16 @@
 \begin{frame}{Задачи}
 
     \begin{itemize}
-        \item изучить протокол WEP, процесс обмена пакетами и обеспечение аутентификации и конфиденциальности в сетях стандарта 802.11 WLAN
-        \item исследовать возможные атаки и реализовать атаку с фрагментацией на WEP
-        \item провести анализ безопасности WEP
-        \item рассмотреть условия работы труда на рабочем месте и расчитать КЕО для города Харькова
+        \item Изучить протокол WEP, процесс обмена пакетами и обеспечение аутентификации и конфиденциальности в сетях стандарта 802.11 WLAN.
+        \item Исследовать возможные атаки и реализовать атаку с фрагментацией на WEP.
+        \item Провести анализ безопасности WEP.
+        \item Рассмотреть условия работы труда на рабочем месте и расчитать КЕО для города Харькова.
     \end{itemize}
 
 \end{frame} 
 
 
-\begin{frame}{Передача пакетов в сетях стандарта 802.11 WLAN}
+\begin{frame}{Передача пакетов в сетях стандарта 802.11~WLAN}
 
     \begin{figure}
         \includegraphics[width=9cm]{graphics/wlan_diagram.eps}
@@ -58,7 +75,7 @@
 \end{frame} 
 
 
-\begin{frame}{Нарушитель в сетях стандарта 802.11 WLAN\newline}
+\begin{frame}{Нарушитель в сетях стандарта 802.11~WLAN\newline}
 
     \begin{figure}
         \includegraphics[width=9cm]{graphics/wlan_diagram_with_attacker.eps}
@@ -76,20 +93,11 @@
 \end{frame} 
 
 
-\begin{frame}{Алгоритм атаки с фрагментацией}
-
-    \begin{figure}
-        \includegraphics[width=7cm]{graphics/fragment_program_algo.eps}
-    \end{figure}
-
-\end{frame} 
-
-
 \begin{frame}{Атака с фрагментацией}
 
     \begin{itemize}
 
-        \item Вычисление гаммы шифрующей
+        \item Вычисление ключа PRGA (шифрующей гаммы)
             \begin{figure}
                 \includegraphics[width=10cm]{graphics/restore_part_of_gamma.eps}
             \end{figure}
@@ -103,16 +111,25 @@
 \end{frame} 
 
 
+\begin{frame}{Алгоритм атаки с фрагментацией}
+
+    \begin{figure}
+        \includegraphics[width=7cm]{graphics/fragment_program_algo.eps}
+    \end{figure}
+
+\end{frame} 
+
+
 \begin{frame}{Анализ безопасности протокола WEP}
 
     \begin{itemize}
 
         \item PTW атака (атака с восстановлением ключа) позволяет вычислить ключ
-        в течение нескольких минут
+        в течение нескольких минут.
 
         \item Атака с фрагментацией (атака без восстановления ключа) позволяет
         вычислить гамму шифрования, что позволяет создавать легитимные пакеты,
-        принимаемые точкой доступа
+        принимаемые точкой доступа.
 
     \end{itemize}
 
@@ -122,8 +139,8 @@
 \begin{frame}{Охрана труда}
 
     \begin{itemize}
-        \item Меры по охране труда в НИЛ с углублённой обработкой вопроса расчёта КЕО для города Харькова.
-        \item Коэффициент естественного освещения равен 1.8\%.
+        \item Разработаны меры по охране труда в НИЛ с углублённой обработкой вопроса расчёта КЕО для города Харькова.
+        \item Коэффициент естественного освещения для города Харькова составил 1,8\%.
     \end{itemize}
 
 \end{frame} 
@@ -132,11 +149,11 @@
 \begin{frame}{Выводы}
 
     \begin{itemize}
-        \item Исследован процесс обмена пакетами и обеспечение безопасности в сетях стандарта 802.11 WLAN
-        \item Рассмотрены возможные атаки на протокол WEP
-        \item Реализована атака с фрагментацией
-        \item Проведен анализ безопасности WEP
-        \item Расчитан коэффициент естественного освещения для города Харькова
+        \item Исследован процесс обмена пакетами и обеспечение безопасности в сетях стандарта 802.11 WLAN.
+        \item Рассмотрены возможные атаки на протокол WEP.
+        \item Реализована атака с фрагментацией.
+        \item Проведен анализ безопасности WEP.
+        \item Расчитан коэффициент естественного освещения для города Харькова.
     \end{itemize}
 
 \end{frame} 
@@ -145,7 +162,7 @@
 \begin{frame}{}
 
     \begin{center}
-        Спасибо за внимание.
+        \LARGE{Спасибо за внимание.}
     \end{center}
 
 \end{frame}
